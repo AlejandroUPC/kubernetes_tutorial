@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+spec:
+  rules:
+  - host: myapp.com
+    http: #do not confuse and use https when trying to use safe protocol, this is just how the ingress and the pod communicate, not how the request comes to Ingress
+      paths: # you can define different rules for different url paths
+       - backend:
+         serviceName: myapp-internal-service
+         servicePort: 8080
